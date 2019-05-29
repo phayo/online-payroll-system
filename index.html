@@ -19,7 +19,7 @@
         <link href="assets/style.css" rel="stylesheet" type="text/css">
         
     </head>
-    <body>
+    <body id="index">
         <input type="hidden" val="" id="empData"/>
         <div class="container">
             <nav class="navbar navbar-expand-lg">
@@ -54,21 +54,19 @@
                         </div>
                         <form name="login">
                             <div class="modal-body">
-                                <div class="form-group">
+                                <small class="text-blue err hide">Sorry, you do not have access</small>
+                                <div class="form-group mail">
                                     <label for="email"><b>Enter Email:</b></label>
                                     <input type="email" class="form-control" id="email" placeholder=""/>
-                                    <small class="text-blue err1 hide">Sorry, you do not have access</small>
                                 </div>
-                                <div class="form-group pas hide">
-                                    <label for="password"><b>Enter Email:</b></label>
+                                <div class="form-group pas">
+                                    <label for="password"><b>Enter Password:</b></label>
                                     <input type="password" class="form-control" id="password" placeholder=""/>
-                                    <small class="text-blue err2 hide">Password Incorrect</small>
                                 </div>
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger">Next</button>
-                                <button type="submit" class="btn btn-danger hide">Proceed</button>
+                                <button type="submit" class="btn btn-danger login-submit">Proceed</button>
                             </div>
                         </form>
                     </div>
