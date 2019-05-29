@@ -1,5 +1,16 @@
 {
     "employees": [
-        
+        {
+            "id": 1,
+            "name": "Chukwuebuka Anazodo",
+            "email": "anazodogodwin@gmail.com",
+            "salary": 500000,
+            "payroll-access": true,
+            "payment-history": [
+
+            ],
+            "department": "Software",
+            "Rank": 5
+        }
     ]
 }
