@@ -37,7 +37,7 @@ function btnEvents(){
             $(".err").text("Email does not exist").removeClass("hide");
         }else if(authorized === true){
             if(userPassword === password){
-                window.location = "dashboard.html";
+                window.location = "employees.html";
             }else{
                 $(".err").text("Password Incorrect").removeClass("hide");
             }
