@@ -3,16 +3,30 @@
         {
             "id": 1,
             "name": "Chukwuebuka Anazodo",
-            "email": "anazodogodwin@gmail.com",
+            "email": "anazodogd@gmail.com",
             "password": "12345",
-            "salary": 500000,
             "payroll-access": true,
             "payment-history": [
 
             ],
+            "image-url": "http://2.bp.blogspot.com/-5u59CoHh9QQ/TuZSgjsNuGI/AAAAAAAAAP0/Rt3NPOY721E/s1600/portrait+9.jpg",
             "department": "Software",
-            "Rank": 5,
+            "rank": 5,
             "job-description": "Project Manager" 
+        },
+        {
+            "id": 2,
+            "name": "Lukman Haruna",
+            "email": "haruna@gmail.com",
+            "password": "54321",
+            "payroll-access": false,
+            "payment-history": [
+
+            ],
+            "image-url": "https://cdn.fstoppers.com/styles/full/s3/media/2017/03/29/jasmine_rz67_portrait_2.jpg",
+            "department": "Marketting",
+            "rank": 2,
+            "job-description": "marketting Supervisor" 
         }
     ]
 }

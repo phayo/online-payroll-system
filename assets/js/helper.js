@@ -17,3 +17,20 @@ function queryServer(method, data, url, callfunction){
         }
     });
 }
+
+function PriceFormat(amount) {
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 2
+    });
+    amount = formatter.format(amount);
+    amount = amount.replace("NGN", "₦");
+    return amount.replace(".00", "");
+}
+
+function getMonth(){
+    var date = new Date();
+    var month = date.getMonth();
+    return month
+}

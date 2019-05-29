@@ -19,7 +19,7 @@
         <link href="assets/style.css" rel="stylesheet" type="text/css">
     </head>
     <body class="navbar-top">
-        <input type="hidden" value="" id=""/>
+        <input type="hidden" value="" class="empData"/>
         
         <div class="container-fluid">
             <!-- Navbar -->
@@ -132,11 +132,10 @@
                         <div class="card-body">
                             <h5 class="card-title"><b>Payday Details</b></h5>
                             <p class="card-text">
-                                Last Payday: <span class="lastPD">unknown</span>
+                                Last Payday: <span class="lastPD text-danger">unknown</span>
                                 <br>
-                                Next Payday: <span class="nextPD">unknown</span>
+                                Next Payday: <span class="nextPD text-primary">unknown</span>
                             </p>
-                            <a href="#!" class="btn btn-primary">Go somewhere</a>
                         </div>
                         </div>
                     </div>
@@ -144,27 +143,39 @@
                 <h3>Employees</h3>
                 <div class="d-flex flex-wrap justify-content-start parent">
                     <!-- Card -->
-                    <div class="card testimonial-card bg-white m-2 p-3">                    
+                    <div class="card testimonial-card child w-25 bg-white m-2 p-3 hide">                    
                         <!-- Avatar -->
                         <div class="avatar mx-auto white">
-                            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle" alt="woman avatar">
+                            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="employee-img rounded-circle img-responsive" alt="woman avatar">
                         </div>
                     
                         <!-- Content -->
                         <div class="card-body">
                             <!-- Name -->
-                            <h4 class="card-title">Anna Doe</h4>
-                            <small class="employee-job text-muted"> Team Lead - <span class="employee-department">Software</span></small>
+                            <h4 class="card-title">
+                                <span class="employee-name ml-2">Anna Doe</span>    
+                                <div class="list-icons">
+                                        <div class="list-icons-item dropdown">
+                                            <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                                <i class="icon-menu7"></i>
+                                            </a>
+        
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="#" class="dropdown-item text-primary edit-employee-info"><i class="fa fa-pencil"></i>Edit info</a>
+                                                <a href="#" class="dropdown-item text-danger delete-employee"><i class="fa fa-trash-o"></i>Delete User</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </h4> 
+                            <small class="text-muted"><span class="employee-job"> Team Lead -</span> <span class="employee-department">Software</span></small>
                             <hr>
                             <!-- Quotation -->
                             <p>
-                                Salary: <span class="employee-salary pull-right">100000</span>
+                                Salary: <span class="employee-salary pull-right text-primary">100000</span>
                                 <br>
-                                Rank: <span class="employee-rank pull-right">100000</span>
+                                Email: <span class="employee-email pull-right text-muted">name@example.com</span>
                                 <br>
-                                Email: <span class="employee-email pull-right">100000</span>
-                                <br>
-                                Pay Status: <span class="employee-pay-status pull-right">100000</span>
+                                Pay Status: <span class="employee-pay-status pull-right text-danger">false</span>
                             </p>
                         </div>
                     

@@ -6,7 +6,7 @@ function performPageActions(){
     }else if(page === "dashboard.html"){
 
     }else if(page === "employees.html"){
-
+        employeespageFunctions();
     }else if(page === "payments.html"){
 
     }
@@ -18,11 +18,15 @@ function getEmployeesData(){
     queryServer("GET", "", server, "storeInfo");
     
 }
+
+function employeespageFunctions(){
+    queryServer("GET", "", server, "loadEmployees");
+};
 function btnEvents(){
     $("form[name=login]").submit(function(e){
         var authorized = "";
         var password = "";
-        var employees = $("#empData").val();
+        var employees = $(".empData").val();
         var userEmail = $("#email").val();
         var userPassword = $("#password").val();
         employees = JSON.parse(employees);
@@ -49,13 +53,50 @@ function btnEvents(){
 }
 function stashInfo(data){
     var employeesData = JSON.stringify(data);
-    $("#empData").val(employeesData);
+    $(".empData").val(employeesData);
 }
-
+function displayEmployees(data){
+    var parent = $(".parent");
+    if(data != null){
+        var companySize = data.length;
+        var lastPayday = "30-"+ (getMonth() - 1) +"-2019";
+        var nextPayday = "30-"+ getMonth() +"-2019";
+        $(".no-employees").text(companySize);
+        $(".lastPD").text(lastPayday);
+        $(".nextPD").text(nextPayday);
+        var mockMarkup = parent.find(".child");
+        data.forEach(function(employee){
+            var newEmployee = mockMarkup.clone();
+            newEmployee.removeClass("child");
+            newEmployee.removeClass("hide");
+            newEmployee.find(".employee-name").text(employee["name"]);
+            newEmployee.find(".employee-job").text(employee["job-description"]+" - ");
+            newEmployee.find(".employee-department").text(employee["department"]);
+            var userid = employee["id"];
+            var imgurl = "assets/pp/user-"+userid+".jpg";
+            newEmployee.find(".employee-img").attr("src", imgurl);
+            var salary = employee["rank"] * 100000;
+            newEmployee.find(".employee-salary").text(PriceFormat(salary));
+            var month = getMonth();
+            var payHistory = employee["payment-history"];
+            newEmployee.find(".employee-pay-status").text(payHistory.includes(month));
+            newEmployee.find(".employee-email").text(employee["email"]);
+            var deleteButton = newEmployee.find(".delete-employee");
+            var editEmployee = newEmployee.find(".edit-employee-info");
+            newEmployee.appendTo(parent).show();
+        });
+    }else{
+        $("<div>").text("No employees found").appendTo(parent);
+    }
+}
 function linkFunction(callFunction, data){
     switch(callFunction){
         case "storeInfo":{
             stashInfo(data);
+            break;
+        }
+        case "loadEmployees":{
+            displayEmployees(data);
             break;
         }
     }
