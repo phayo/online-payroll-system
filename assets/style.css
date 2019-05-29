@@ -1,0 +1,7 @@
+html, body {
+	font-family: 'Roboto', sans-serif;
+  font-size: 100%;
+  overflow-x: hidden;
+  background-color: #edecec;
+  background-image: url("images/homepage.png");
+}

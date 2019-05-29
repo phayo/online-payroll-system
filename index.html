@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>DPM - Homepage</title>
+        <link rel="icon" type="image/png" href="assets/images/decprologo.png"/>
+        <!-- Styles-->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+        <link href="assets/icomoon/styles.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/layout.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/components.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/colors.min.css" rel="stylesheet" type="text/css">
+        
+        <link href="assets/fontawesome/styles.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/style.css" rel="stylesheet" type="text/css">
+        
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="#">
+                    <img src="assets/images/decprologo.png" height="50" alt="DPM logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#loginarea"
+                    aria-controls="loginarea" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="loginarea">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-danger btn-rounded nav-link" data-toggle="modal" data-target=".login-modal">
+                                Proceed
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+
+
+            <div class="modal fade login-modal">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+
+                        <div class="modal-header bg-danger">
+                            <h6 class="modal-title">Procced to Payroll Manager</h6>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <form name="login">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="email"><b>Enter Email:</b></label>
+                                    <input type="email" class="form-control" id="email" placeholder=""/>
+                                    <small class="text-blue err1 hide">Sorry, you do not have access</small>
+                                </div>
+                                <div class="form-group pas hide">
+                                    <label for="password"><b>Enter Email:</b></label>
+                                    <input type="password" class="form-control" id="password" placeholder=""/>
+                                    <small class="text-blue err2 hide">Password Incorrect</small>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger">Next</button>
+                                <button type="submit" class="btn btn-danger hide">Proceed</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/helper.js"></script>
+        <script src="assets/js/main.js"></script>
+        <!-- Scripts -->
+    </body>
+</html>
