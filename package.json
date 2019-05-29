@@ -1,0 +1,23 @@
+{
+  "name": "payroll-management-system",
+  "version": "1.0.0",
+  "description": "An automated and manual payroll management system for companies",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phayo/online-payroll-system.git"
+  },
+  "keywords": [
+    "payroll_management",
+    "payroll"
+  ],
+  "author": "mrphayo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phayo/online-payroll-system/issues"
+  },
+  "homepage": "https://github.com/phayo/online-payroll-system#readme"
+}
