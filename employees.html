@@ -82,14 +82,14 @@
                             <div class="header-elements d-none">
                                 <div class="breadcrumb justify-content-center cursor-pointer">
                                     <a href="#" data-toggle="modal" data-target=".pay-modal" class="breadcrumb-elements-item text-warning">
-                                        <i class="fa fa-money mr-2"></i>
+                                        <i class="fa fa-money mr-2 text-secondary"></i>
                                         Pay Employees
                                     </a>
                                 </div>
 
                                 <div class="breadcrumb justify-content-center cursor-pointer">
                                     <a href="#" data-toggle="modal" data-target=".new-employee-modal" class="breadcrumb-elements-item text-warning">
-                                        <i class="fa fa-plus ml-2"></i>
+                                        <i class="fa fa-plus ml-2 text-secondary"></i>
                                         Add Employees
                                     </a>
                                 </div>
@@ -106,10 +106,12 @@
                 <div class="row">
                     <div class="col-sm-4 mb-3 mb-md-0">
                         <div class="card">
+                        <div class="card-header bg-danger">
+                            <h5 class="card-title"><b>Company Balance</b></h5>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title"><b>Company Financials</b></h5>
                             <p class="card-text">
-                                <h6>Balance: <span class="comBal text-primary"></span></h6>
+                                <h3><span class="comBal text-primary"></span></h3>
                                 <input type="hidden" id="company-balance" value="200000000000"/>
                             </p>
                         </div>
@@ -118,19 +120,22 @@
                     
                     <div class="col-sm-4">
                         <div class="card">
-                        <div class="card-body">
-                                <h5 class="card-title"><b>Employees Overview</b></h5>
-                            <p class="card-text">
-                                Number of employees: <span class="no-employees text-primary">3</span>
-                            </p>
-                        </div>
+                            <div class="card-header bg-danger">
+                                <h5 class="card-title"><b>Number of employees</b></h5>
+                            </div>
+                            <div class="card-body">
+                                <b><h3 class="no-employees mx-auto">3</h3></b>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-sm-4">
                         <div class="card">
-                        <div class="card-body">
+                        <div class="card-header bg-danger">
                             <h5 class="card-title"><b>Payday Details</b></h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><b></b></h5>
                             <p class="card-text">
                                 Last Payday: <span class="lastPD text-danger">unknown</span>
                                 <br>
@@ -141,53 +146,57 @@
                     </div>
                 </div>
                 <div class="d-flex flex-wrap justify-content-between">
-                    <h3 class="flex-item">Employees</h3>
+                    <h3 class="flex-item all-employees text" style="cursor:pointer">Employees</h3>
                     <form class="form-inline md-form form-md flex-item active-pink-2 mt-2">
-                        <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search employees" aria-label="Search">
+                        <input class="form-control form-control-sm mr-3 w-75 keyword" type="text" placeholder="Search employees" aria-label="Search">
                         <a href="#" class="text-secondary search-employees"><i class="fa fa-search"></i></a>
                     </form>
                 </div>
-                 
-                <div class="d-flex flex-wrap justify-content-start parent">
-                    <!-- Card -->
-                    <div class="card testimonial-card child  bg-white m-2 p-3 hide" style="max-width: 25%">                    
-                        <!-- Avatar -->
-                        <div class="avatar mx-auto white">
-                            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="employee-img rounded-circle img-responsive" alt="woman avatar">
-                        </div>
-                    
-                        <!-- Content -->
-                        <div class="card-body">
-                            <!-- Name -->
-                            <h4 class="card-title">
-                                <span class="employee-name ml-2">Anna Doe</span>    
-                                <div class="list-icons">
-                                        <div class="list-icons-item dropdown">
-                                            <a href="#" class="list-icons-item" data-toggle="dropdown">
-                                                <i class="icon-menu7"></i>
-                                            </a>
-        
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item text-primary edit-employee-info"><i class="fa fa-pencil"></i>Edit info</a>
-                                                <a href="#" class="dropdown-item text-danger delete-employee"><i class="fa fa-trash-o"></i>Delete User</a>
-                                            </div>
+                
+                <!-- Card -->
+                <div class="card testimonial-card child  bg-white m-2 p-3 hide" style="max-width: 25%">                    
+                    <!-- Avatar -->
+                    <div class="avatar mx-auto white">
+                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="employee-img rounded-circle img-responsive" alt="woman avatar">
+                    </div>
+                
+                    <!-- Content -->
+                    <div class="card-body">
+                        <!-- Name -->
+                        <h4 class="card-title">
+                            <span class="employee-name ml-2">Anna Doe</span>    
+                            <div class="list-icons">
+                                    <div class="list-icons-item dropdown">
+                                        <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                            <i class="icon-menu7"></i>
+                                        </a>
+    
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="#" class="dropdown-item text-primary edit-employee-info"><i class="fa fa-pencil"></i>Edit info</a>
+                                            <a href="#" class="dropdown-item text-danger delete-employee"><i class="fa fa-trash-o"></i>Delete User</a>
                                         </div>
                                     </div>
-                            </h4> 
-                            <small class="text-muted"><span class="employee-job"> Team Lead -</span> <span class="employee-department">Software</span></small>
-                            <hr>
-                            <!-- Quotation -->
-                            <p>
-                                Salary: <span class="employee-salary pull-right text-primary">100000</span>
-                                <br>
-                                Email: <span class="employee-email pull-right text-muted">name@example.com</span>
-                                <br>
-                                Pay Status: <span class="employee-pay-status pull-right text-danger">false</span>
-                            </p>
-                        </div>
-                    
+                                </div>
+                        </h4> 
+                        <small class="text-muted"><span class="employee-job"> Team Lead -</span> <span class="employee-department">Software</span></small>
+                        <hr>
+                        <!-- Quotation -->
+                        <p>
+                            Salary: <span class="employee-salary pull-right text-primary">100000</span>
+                            <br>
+                            Email: <span class="employee-email pull-right text-muted">name@example.com</span>
+                            <br>
+                            Pay Status: <span class="employee-pay-status pull-right text-danger">false</span>
+                        </p>
                     </div>
-                    <!-- /Card -->
+                
+                </div>
+                <!-- /Card -->
+
+
+                <div class="d-flex flex-wrap justify-content-start parent">
+                    
+                </div>
             </div>
             <!-- /Content Area-->
         </div>
@@ -265,21 +274,15 @@
                                 <select class="form-control form-control-select2" id="pay-category">
                                     <option value="">select</option>
                                     <option value="0">All</option>
-                                    <option value="Software">Software</option>
-                                    <option value="Marketting">Marketting</option>
-                                    <option value="Administration">Administration</option>
-                                    <option value="4">Rank 4 and above</option>
-                                    <option value="3">Below rank 4</option>
                                     <option value="user">individual</option>
                                 </select>
                             </div>
                             <div class="form-group user-select hide">
-                                    <label for="pay-user">Select User</label>
-                                    <select class="form-control form-control-select2" id="pay-user">
-                                        <option value="">Select an option</option>
-                                        
-                                    </select>
-                                </div>
+                                <label for="pay-user">Select User</label>
+                                <select class="form-control form-control-select2" id="pay-user">
+                                    <option value="">Select an option</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-danger new-emp-submit"><i class="fa fa-money mr-2"></i>Pay</button>

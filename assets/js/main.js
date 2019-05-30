@@ -12,6 +12,7 @@ function performPageActions(){
     }
 
     btnEvents();
+    autoPayment();
 }
 
 function getEmployeesData(){
@@ -135,6 +136,62 @@ function btnEvents(){
             $(".user-select").addClass("hide");
         }
     });
+
+    $(".search-employees").click(function(){
+        var keyword = $(".keyword").val();
+        if(keyword == ""){
+
+        }else{
+            var url = server+"?email="+keyword;
+            queryServer("GET", "", url, "loadEmployees");
+        }
+    });
+
+    $(".all-employees").click(function(){
+        queryServer("GET", "", server, "loadEmployees");
+    });
+
+    $("form[name=pay-salary]").submit(function(e){
+        var category = $("#pay-category").val();
+        var employees = $(".empData").val();
+        var month = getMonth();
+        employees = JSON.parse(employees);
+        if(category == "0"){
+            employees.forEach(function(employee){
+                var id = employee["id"];
+                var status = employee["payment-history"];
+                status += month+":";
+                employee["payment-history"] = status;
+                delete employee["id"];
+                queryServer("PUT", employee, server+id, "default");
+            });
+            swal({
+                title: 'Done!',
+                text: "Employees Paid",
+                type: 'success',
+                showCancelButton: false,
+                confirmButtonText: 'Ok!',
+                confirmButtonClass: 'btn btn-success',
+                buttonsStyling: false,
+                onClose: function () {
+                    window.location.reload();
+                }
+            });
+        }else if(category == "user"){
+            var user = $("#pay-user").val();
+            employees.forEach(function(employee){
+                var id = employee["id"];
+                if(user == id){
+                    var status = employee["payment-history"];
+                    status += month+":";
+                    employee["payment-history"] = status;
+                    delete employee["id"];
+                    queryServer("PUT", employee, server+id, "LoadPayUser");  
+                }
+            });
+        }
+        e.preventDefault();
+    });
 }//End of btnEvents();
 
 function stashInfo(data){
@@ -150,7 +207,8 @@ function displayEmployees(data){
         $(".no-employees").text(companySize);
         $(".lastPD").text(lastPayday);
         $(".nextPD").text(nextPayday);
-        var mockMarkup = parent.find(".child");
+        var mockMarkup = $(".child");
+        parent.empty();
         data.forEach(function(employee){
             var newEmployee = mockMarkup.clone();
             newEmployee.removeClass("child");
@@ -164,6 +222,7 @@ function displayEmployees(data){
             var salary = employee["rank"] * 100000;
             newEmployee.find(".employee-salary").text(PriceFormat(salary));
             var month = getMonth();
+            month = ""+month;
             var payHistory = employee["payment-history"];
             payHistory = payHistory.split(":");
             newEmployee.find(".employee-pay-status").text(payHistory.includes(month));
@@ -246,6 +305,22 @@ function displayEditData(){
         }
     });
 }
+
+function displayPayUser(){
+    swal({
+        title: 'Done!',
+        text: "User Salary Paid!",
+        type: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'Ok!',
+        confirmButtonClass: 'btn btn-success',
+        buttonsStyling: false,
+        onClose: function () {
+            window.location.reload();
+        }
+    });
+}
+//LinkFunction
 function linkFunction(callFunction, data){
     switch(callFunction){
         case "storeInfo":{
@@ -268,6 +343,14 @@ function linkFunction(callFunction, data){
         case "LoadEditEmployeeData":{
             displayEditData(data);
             break;
+            LoadPayUser
+        }
+        case "LoadPayUser":{
+            displayPayUser(data);
+            break;
+        }
+        default:{
+            PayResponse();
         }
     }
 }
