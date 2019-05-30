@@ -23,14 +23,14 @@
       "job-description": "Marketting Supervisor"
     },
     {
-      "name": "John Doe",
+      "name": "John James",
       "email": "johndoe@gmail.com",
       "password": "john",
-      "department": "Marketting",
-      "payroll-access": "false",
+      "payroll-access": "true",
       "payment-history": "2019:",
+      "department": "Marketting",
+      "rank": "4",
       "job-description": "Program Manager",
-      "rank": "3",
       "id": 3
     },
     {

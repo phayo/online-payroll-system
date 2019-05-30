@@ -71,25 +71,33 @@ function btnEvents(){
         var rank = parseInt($("#new-emp-rank").val());
         var job = $("#new-emp-jobTitle").val();
         var access = $("#new-emp-access").val();
-        var payHistory = "2019:";
         access == "true"? access = true : access = false;
-        // var param = new Object();
-        // param["name"] = fullname;
-        // param["email"] = email;
-        var data = {
-            "name": fullname,
-            "email": email,
-            "password": password,
-            "payroll-access": access,
-            "payment-history": payHistory,
-            "department": dept,
-            "rank": rank,
-            "job-description": job
-          };
         if(check === "add"){
+            var payHistory = "2019:";
+            var data = {
+                "name": fullname,
+                "email": email,
+                "password": password,
+                "payroll-access": access,
+                "payment-history": payHistory,
+                "department": dept,
+                "rank": rank,
+                "job-description": job
+              };
             queryServer("POST", data, server, "LoadNewEmployee");
-        }else if(check === "edit"){
-
+        }else{
+            var payHistory = $("#new-emp-status").val();
+            var data = {
+                "name": fullname,
+                "email": email,
+                "password": password,
+                "payroll-access": access,
+                "payment-history": payHistory,
+                "department": dept,
+                "rank": rank,
+                "job-description": job
+            };
+            queryServer("PUT", data, server+check, "LoadEditEmployeeData");
         }
         e.preventDefault();
     });
@@ -127,13 +135,16 @@ function displayEmployees(data){
             newEmployee.find(".employee-pay-status").text(payHistory.includes(month));
             newEmployee.find(".employee-email").text(employee["email"]);
             var deleteButton = newEmployee.find(".delete-employee");
-            var editEmployee = newEmployee.find(".edit-employee-info");
+            var editButton = newEmployee.find(".edit-employee-info");
             deleteButton.click(function(){
                 var url = server+userid;
                 var method = "DELETE";
                 var data = "";
                 var callFunction = "updateInfo";
                 queryServer(method, data, url, callFunction);
+            });
+            editButton.click(function(){
+                editEmployeeData(employee);
             });
             newEmployee.appendTo(parent).show();
         });
@@ -159,7 +170,7 @@ function  displayUpdatedInfo(data){
 function  displayNewUser(data){
     swal({
         title: 'Done!',
-        text: "New User Added!",
+        text: "New Employee Added!",
         type: 'success',
         showCancelButton: false,
         confirmButtonText: 'Ok!',
@@ -170,7 +181,37 @@ function  displayNewUser(data){
         }
     });
 }
+function editEmployeeData(data){
+    $(".new-employee-modal").on("show.bs.modal", function(){
+        $("#check").val(data["id"]);
+        $("#newEmployeeName").val(data["name"]);
+        $("#new-emp-email").val(data["email"]);
+        $("#new-emp-password").val(data["password"]);
+        $(".password-block").hide();
+        $("#new-emp-dept").val(data["department"]);
+        $("#new-emp-rank").val(data["rank"]);
+        $("#new-emp-jobTitle").val(data["job-description"]);
+        $("#new-emp-access").val(data["access"]);
+        $("#new-emp-status").val(data["payment-history"]);
+        $(".new-emp-title").text("Edit Employee Data");
+        $(".new-emp-submit").text("Edit");
+    }).modal("show");
+}
 
+function displayEditData(){
+    swal({
+        title: 'Done!',
+        text: "Employee Data Editted!",
+        type: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'Ok!',
+        confirmButtonClass: 'btn btn-success',
+        buttonsStyling: false,
+        onClose: function () {
+            window.location.reload();
+        }
+    });
+}
 function linkFunction(callFunction, data){
     switch(callFunction){
         case "storeInfo":{
@@ -187,6 +228,10 @@ function linkFunction(callFunction, data){
         }
         case "LoadNewEmployee":{
             displayNewUser(data);
+            break;
+        }
+        case "LoadEditEmployeeData":{
+            displayEditData(data);
             break;
         }
     }
