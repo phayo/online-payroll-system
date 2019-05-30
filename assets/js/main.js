@@ -194,6 +194,34 @@ function btnEvents(){
     });
 }//End of btnEvents();
 
+function autoPayment(){
+    var category = $("#pay-category").val();
+        var employees = $(".empData").val();
+        var month = getMonth();
+        employees = JSON.parse(employees);
+        if(category == "0"){
+            employees.forEach(function(employee){
+                var id = employee["id"];
+                var status = employee["payment-history"];
+                status += month+":";
+                employee["payment-history"] = status;
+                delete employee["id"];
+                queryServer("PUT", employee, server+id, "default");
+            });
+            swal({
+                title: 'Done!',
+                text: "Employees Paid",
+                type: 'success',
+                showCancelButton: false,
+                confirmButtonText: 'Ok!',
+                confirmButtonClass: 'btn btn-success',
+                buttonsStyling: false,
+                onClose: function () {
+                    window.location.reload();
+                }
+            });
+}
+
 function stashInfo(data){
     var employeesData = JSON.stringify(data);
     $(".empData").val(employeesData);
