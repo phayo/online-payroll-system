@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>DPM - Employees</title>
-        <link rel="icon" type="image/png" href="assets/images/decprologo.png"/>
+        <link rel="icon" type="image/png" href="assets/images/new-logo.png"/>
         <!-- Styles-->
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
         <link href="assets/icomoon/styles.css" rel="stylesheet" type="text/css">
@@ -19,16 +19,13 @@
         <link href="assets/style.css" rel="stylesheet" type="text/css">
     </head>
     <body class="navbar-top">
-        <input type="hidden" value="" id=""/>
-        
-        <div class="container">
+        <input type="hidden" value="" class="empData"/>
+        <div class="container-fluid">
             <!-- Navbar -->
             <div class="navbar navbar-expand-md navbar-dark primary-color fixed-top">
                 <!-- logo -->
                 <div class="navbar-brand">
-                    <a href="" class="d-inline-block">
-                        <img src="assets/images/decprologo.png" alt="">
-                    </a>
+                    <img src="assets/images/decprologo.png" class="img-responsive" alt="">
                 </div>
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sitelinks"
@@ -47,7 +44,7 @@
                             <a class="nav-link text-warning" href="employees.html">Employees</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-warning" href="payments.html">Payments</a>
+                            <a class="nav-link text-warning" href="#">Payments</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-warning" href="index.html"><i class="fa fa-power-off"></i></a>
@@ -60,18 +57,257 @@
 
             <!-- Page contents-->
             <div class="content-wrapper">
+                    <!-- Page header -->
+                    <div class="page-header page-header-light">
+                        <div class="page-header-content header-elements-md-inline">
+                            <div class="page-title d-flex">
+                                <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">DPM</span> - Employees</h4>
+                            </div>
+                
+                
+                        </div>
+                
+                        <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+                            <div class="d-flex">
+                                <div class="breadcrumb">
+                                    <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> HomePage</a>
+                                    <a href="employees.html" class="breadcrumb-item">Employees</a>
+                                </div>
+                
+                                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+                            </div>
+                
+                            <div class="header-elements d-none">
+                                <div class="breadcrumb justify-content-center cursor-pointer">
+                                    <a href="#" data-toggle="modal" data-target=".pay-modal" class="breadcrumb-elements-item text-warning">
+                                        <i class="fa fa-money mr-2 text-secondary"></i>
+                                        Pay Employees
+                                    </a>
+                                </div>
 
+                                <div class="breadcrumb justify-content-center cursor-pointer">
+                                    <a href="#" data-toggle="modal" data-target=".new-employee-modal" class="breadcrumb-elements-item text-warning">
+                                        <i class="fa fa-plus ml-2 text-secondary"></i>
+                                        Add Employees
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /page header -->
             </div>
             <!-- /Page contents-->
-        </div>
-        
-        
 
+
+            <!-- Content Area-->
+            <div class="content">
+                <div class="row">
+                    <div class="col-sm-4 mb-3 mb-md-0">
+                        <div class="card">
+                        <div class="card-header bg-danger">
+                            <h5 class="card-title"><b>Company Balance</b></h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <h3><span class="comBal text-primary"></span></h3>
+                                <input type="hidden" id="company-balance" value="200000000000"/>
+                            </p>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-header bg-danger">
+                                <h5 class="card-title"><b>Number of employees</b></h5>
+                            </div>
+                            <div class="card-body">
+                                <b><h3 class="no-employees mx-auto">3</h3></b>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="card">
+                        <div class="card-header bg-danger">
+                            <h5 class="card-title"><b>Payday Details</b></h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><b></b></h5>
+                            <p class="card-text">
+                                Last Payday: <span class="lastPD text-danger">unknown</span>
+                                <br>
+                                Next Payday: <span class="nextPD text-primary">unknown</span>
+                            </p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap justify-content-between">
+                    <h3 class="flex-item all-employees text" style="cursor:pointer">Employees</h3>
+                    <form class="form-inline md-form form-md flex-item active-pink-2 mt-2">
+                        <input class="form-control form-control-sm mr-3 w-75 keyword" type="text" placeholder="Search employees" aria-label="Search">
+                        <a href="#" class="text-secondary search-employees"><i class="fa fa-search"></i></a>
+                    </form>
+                </div>
+                
+                <!-- Card -->
+                <div class="card testimonial-card child  bg-white m-2 p-3 hide" style="max-width: 25%">                    
+                    <!-- Avatar -->
+                    <div class="avatar mx-auto white">
+                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="employee-img rounded-circle img-responsive" alt="woman avatar">
+                    </div>
+                
+                    <!-- Content -->
+                    <div class="card-body">
+                        <!-- Name -->
+                        <h4 class="card-title">
+                            <span class="employee-name ml-2">Anna Doe</span>    
+                            <div class="list-icons">
+                                    <div class="list-icons-item dropdown">
+                                        <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                            <i class="icon-menu7"></i>
+                                        </a>
+    
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="#" class="dropdown-item text-primary edit-employee-info"><i class="fa fa-pencil"></i>Edit info</a>
+                                            <a href="#" class="dropdown-item text-danger delete-employee"><i class="fa fa-trash-o"></i>Delete User</a>
+                                        </div>
+                                    </div>
+                                </div>
+                        </h4> 
+                        <small class="text-muted"><span class="employee-job"> Team Lead -</span> <span class="employee-department">Software</span></small>
+                        <hr>
+                        <!-- Quotation -->
+                        <p>
+                            Salary: <span class="employee-salary pull-right text-primary">100000</span>
+                            <br>
+                            Email: <span class="employee-email pull-right text-muted">name@example.com</span>
+                            <br>
+                            Pay Status: <span class="employee-pay-status pull-right text-danger">false</span>
+                        </p>
+                    </div>
+                
+                </div>
+                <!-- /Card -->
+
+
+                <div class="d-flex flex-wrap justify-content-start parent">
+                    
+                </div>
+            </div>
+            <!-- /Content Area-->
+        </div>
+
+        <!-- Modals Area-->
+
+        <!-- add new employee modal -->
+        <div class="modal fade new-employee-modal">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content"> 
+                    <div class="modal-header bg-danger">
+                        <h6 class="modal-title new-emp-title">Add a new employee</h6>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <form name="addUser">
+                        <input type="hidden" id="check" value="add"/>
+                        <div class="modal-body">                            
+                            <div class="form-group">
+                                <label for="newEmployeeName"><b>Employee Name:</b></label>
+                                <input type="text" class="form-control" id="newEmployeeName" placeholder="eg John Doe"required/>
+                            </div>
+                            <div class="form-group ">
+                                <label for="new-emp-email"><b>Employee Email:</b></label><small class="ml-3 email-err text-info hide">Email already exists</small>
+                                <input type="email" class="form-control" id="new-emp-email" placeholder="name@example.com"required/>
+                            </div>
+                            <div class="form-group password-block">
+                                <label for="new-emp-jobTitle"><b>Password:</b></label>
+                                <input type="password" class="form-control" id="new-emp-password" placeholder="" required/>
+                            </div>
+                            <div class="row">
+                                <small class="payroll-manager-info hide text-info">
+                                    Note: Employees with rank 4 and above have access to this payroll manager
+                                </small>
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label for="new-emp-dept"><b>Employee Department:</b></label>
+                                        <input type="text" class="form-control" id="new-emp-dept" placeholder="eg Marketting"required/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label for="new-emp-rank"><b>Employee Rank:</b></label>
+                                        <input type="number" class="form-control" id="new-emp-rank" placeholder="eg 3"required/>
+                                        <input type="hidden" id="new-emp-access" value="false"/>
+                                        <input type="hidden" id="new-emp-status" value=""/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label for="new-emp-jobTitle"><b>Job Title:</b></label>
+                                <input type="text" class="form-control" id="new-emp-jobTitle" placeholder="eg 3" required/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger new-emp-submit">Add Employee</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /add new employee modal-->
+        
+        <!-- Pay Modal-->
+        <div class="modal fade pay-modal">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h6 class="modal-title">Pay Employees</h6>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <form name="pay-salary">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="pay-category">Select the category you wish to pay</label>
+                                <select class="form-control form-control-select2" id="pay-category">
+                                    <option value="">select</option>
+                                    <option value="0">All</option>
+                                    <option value="user">individual</option>
+                                </select>
+                            </div>
+                            <div class="form-group user-select hide">
+                                <label for="pay-user">Select User</label>
+                                <select class="form-control form-control-select2" id="pay-user">
+                                    <option value="">Select an option</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger new-emp-submit"><i class="fa fa-money mr-2"></i>Pay</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Footer-->
+        <footer class="page-footer font-small" style="background-color: #1d1111"
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3"> <span class="text-white">© 2019 Copyright:</span>
+              <a href="https://mdbootstrap.com/education/bootstrap/" class="text-danger"> DecPayrollManager.com</a>
+            </div>
+            <!-- Copyright -->
+          
+          </footer>
+        <!-- /Footer-->
 
 
         <!-- Scripts -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/sweet_alert.min.js"></script>
         <script src="assets/js/helper.js"></script>
         <script src="assets/js/main.js"></script>
         <!-- Scripts -->

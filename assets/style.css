@@ -7,3 +7,7 @@ html, body {
 #index {
   background-image: url("images/homepage.png");
 }
+
+.employee-img{
+  height: auto;
+}

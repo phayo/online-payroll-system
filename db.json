@@ -1,17 +1,48 @@
 {
-    "employees": [
-        {
-            "id": 1,
-            "name": "Chukwuebuka Anazodo",
-            "email": "anazodogodwin@gmail.com",
-            "password": "12345",
-            "salary": 500000,
-            "payroll-access": true,
-            "payment-history": [
-
-            ],
-            "department": "Software",
-            "Rank": 5
-        }
-    ]
+  "employees": [
+    {
+      "name": "Chukwuebuka Anazodo",
+      "email": "anazodogd@gmail.com",
+      "password": "12345",
+      "payroll-access": "true",
+      "payment-history": "2019:4:4:",
+      "department": "Software",
+      "rank": "5",
+      "job-description": "Project Manager",
+      "id": 1
+    },
+    {
+      "name": "Lukman Haruna",
+      "email": "haruna@gmail.com",
+      "password": "54321",
+      "payroll-access": "false",
+      "payment-history": "2019:4:4:",
+      "department": "Marketting",
+      "rank": "2",
+      "job-description": "Marketting Supervisor",
+      "id": 2
+    },
+    {
+      "name": "John James",
+      "email": "johndoe@gmail.com",
+      "password": "john",
+      "payroll-access": "true",
+      "payment-history": "2019:4:4:",
+      "department": "Administration",
+      "rank": "4",
+      "job-description": "Program Manager",
+      "id": 3
+    },
+    {
+      "name": "Jane Sander",
+      "email": "janesanders@dpm.com",
+      "password": "jane",
+      "payroll-access": "false",
+      "payment-history": "2019:4:4:",
+      "department": "Marketting",
+      "rank": "2",
+      "job-description": "Marketter",
+      "id": 4
+    }
+  ]
 }
