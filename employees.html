@@ -89,7 +89,7 @@
                                 </div>
 
                                 <div class="breadcrumb justify-content-center cursor-pointer">
-                                    <a href="#" class="breadcrumb-elements-item text-warning">
+                                    <a href="#" data-toggle="modal" data-target=".new-employee-modal" class="breadcrumb-elements-item text-warning">
                                         <i class="fa fa-plus ml-2"></i>
                                         Add Employees
                                     </a>
@@ -184,7 +184,73 @@
             </div>
             <!-- /Content Area-->
         </div>
-        
+
+        <!-- Modals Area-->
+
+        <!-- add new employee modal -->
+        <div class="modal fade new-employee-modal">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <input type="hidden" id="check" value="add-employee"/>
+                    <div class="modal-header bg-danger">
+                        <h6 class="modal-title">Add a new employee</h6>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <form name="addUser">
+                        <div class="modal-body">                            
+                            <div class="form-group">
+                                <label for="newEmployeeName"><b>Employee Name:</b></label>
+                                <input type="text" class="form-control" id="newEmployeeName" placeholder="eg John Doe"required/>
+                            </div>
+                            <div class="form-group ">
+                                <label for="new-emp-email"><b>Employee Email:</b></label>
+                                <input type="email" class="form-control" id="new-emp-email" placeholder="name@example.com"required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-emp-jobTitle"><b>Password:</b></label>
+                                <input type="password" class="form-control" id="new-emp-password" placeholder="" required/>
+                            </div>
+                            <div class="row">
+                                <small class="payroll-manager-info hide text-info">
+                                    Note: Employees with rank 4 and above have access to this payroll manager
+                                </small>
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label for="new-emp-dept"><b>Employee Department:</b></label>
+                                        <input type="text" class="form-control" id="new-emp-dept" placeholder="eg Marketting"required/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label for="new-emp-rank"><b>Employee Rank:</b></label>
+                                        <input type="number" class="form-control" id="new-emp-rank" placeholder="eg 3"required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label for="new-emp-jobTitle"><b>Job Title:</b></label>
+                                        <input type="text" class="form-control" id="new-emp-jobTitle" placeholder="eg 3"required/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label for="new-emp-jobTitle"><b>Job Title:</b></label>
+                                        <input type="text" class="form-control" id="new-emp-jobTitle" placeholder="eg 3" required/>
+                                    </div>
+                                </div>
+                            </div>
+                               
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger login-submit">Add Employee</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /add new employee modal-->
         
 
 
