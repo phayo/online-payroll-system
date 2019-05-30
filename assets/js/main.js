@@ -1,4 +1,4 @@
-var server = "http://localhost:3000/employees";
+var server = "http://localhost:3000/employees/";
 function performPageActions(){
     var page = getCurrentPage();
     if(page === "index.html"){
@@ -83,12 +83,34 @@ function displayEmployees(data){
             newEmployee.find(".employee-email").text(employee["email"]);
             var deleteButton = newEmployee.find(".delete-employee");
             var editEmployee = newEmployee.find(".edit-employee-info");
+            deleteButton.click(function(){
+                var url = server+userid;
+                var method = "DELETE";
+                var data = "";
+                var callFunction = "updateInfo";
+                queryServer(method, data, url, callFunction);
+            });
             newEmployee.appendTo(parent).show();
         });
     }else{
         $("<div>").text("No employees found").appendTo(parent);
     }
 }
+function  displayUpdatedInfo(data){
+    swal({
+        title: 'Done!',
+        text: "User deleted!",
+        type: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'Ok!',
+        confirmButtonClass: 'btn btn-success',
+        buttonsStyling: false,
+        onClose: function () {
+            window.location.reload();
+        }
+    });
+}
+
 function linkFunction(callFunction, data){
     switch(callFunction){
         case "storeInfo":{
@@ -97,6 +119,10 @@ function linkFunction(callFunction, data){
         }
         case "loadEmployees":{
             displayEmployees(data);
+            break;
+        }
+        case "updateInfo":{
+            displayUpdatedInfo(data);
             break;
         }
     }
