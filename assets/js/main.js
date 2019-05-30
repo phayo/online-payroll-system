@@ -42,7 +42,7 @@ function btnEvents(){
         });
         if(authorized === ""){
             $(".err").text("Email does not exist").removeClass("hide");
-        }else if(authorized === true){
+        }else if(authorized == "true"){
             if(userPassword === password){
                 window.location = "employees.html";
             }else{
@@ -139,10 +139,16 @@ function btnEvents(){
 
     $(".search-employees").click(function(){
         var keyword = $(".keyword").val();
+        var isEmail = keyword.includes("@");
         if(keyword == ""){
 
         }else{
-            var url = server+"?email="+keyword;
+            var url = "";
+            if(isEmail){
+                url = server+"?email="+keyword;
+            }else{
+                url = server+"?department="+keyword;
+            }
             queryServer("GET", "", url, "loadEmployees");
         }
     });
@@ -197,29 +203,33 @@ function btnEvents(){
 function autoPayment(){
     var category = $("#pay-category").val();
         var employees = $(".empData").val();
-        var month = getMonth();
-        employees = JSON.parse(employees);
-        if(category == "0"){
-            employees.forEach(function(employee){
-                var id = employee["id"];
-                var status = employee["payment-history"];
-                status += month+":";
-                employee["payment-history"] = status;
-                delete employee["id"];
-                queryServer("PUT", employee, server+id, "default");
-            });
-            swal({
-                title: 'Done!',
-                text: "Employees Paid",
-                type: 'success',
-                showCancelButton: false,
-                confirmButtonText: 'Ok!',
-                confirmButtonClass: 'btn btn-success',
-                buttonsStyling: false,
-                onClose: function () {
-                    window.location.reload();
-                }
-            });
+        if(employees != ""){
+            var month = getMonth();
+            employees = JSON.parse(employees);
+            if(category == "0"){
+                employees.forEach(function(employee){
+                    var id = employee["id"];
+                    var status = employee["payment-history"];
+                    status += month+":";
+                    employee["payment-history"] = status;
+                    delete employee["id"];
+                    queryServer("PUT", employee, server+id, "default");
+                });
+                swal({
+                    title: 'Done!',
+                    text: "Employees Paid",
+                    type: 'success',
+                    showCancelButton: false,
+                    confirmButtonText: 'Ok!',
+                    confirmButtonClass: 'btn btn-success',
+                    buttonsStyling: false,
+                    onClose: function () {
+                        window.location.reload();
+                    }
+                });
+            }
+        }
+        
 }
 
 function stashInfo(data){
@@ -349,6 +359,7 @@ function displayPayUser(){
     });
 }
 //LinkFunction
+
 function linkFunction(callFunction, data){
     switch(callFunction){
         case "storeInfo":{
