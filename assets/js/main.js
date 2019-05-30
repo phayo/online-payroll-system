@@ -21,6 +21,8 @@ function getEmployeesData(){
 
 function employeespageFunctions(){
     queryServer("GET", "", server, "loadEmployees");
+    var bal = parseInt($("#company-balance").val());
+    $(".comBal").text(PriceFormat(bal));
 };
 function btnEvents(){
     $("form[name=login]").submit(function(e){
@@ -101,18 +103,37 @@ function btnEvents(){
         }
         e.preventDefault();
     });
-    $(".new-emp-email").blur(function(){
+
+    $("#new-emp-email").blur(function(){
         var mail = $(this).val();
         var employeeData = $(".empData").val();
         employeeData = JSON.parse(employeeData);
-        employeeData.forEach(function(employee){
-            if(mail === employee["email"]){
+        for(var j = 0; j < employeeData.length; j++){
+            if(mail === employeeData[j]["email"]){
                 $(".email-err").removeClass("hide");
+                $(".new-emp-submit").prop("disabled", true);
                 break;
             }else{
                 $(".email-err").addClass("hide");
+                $(".new-emp-submit").prop("disabled", false);
             }
-        });
+        }
+    });
+
+    $("#pay-category").change(function(){
+        var selected = $(this).val();
+        if(selected == "user"){
+            var users = $(".empData").val();
+            users = JSON.parse(users);
+            $("#pay-user").empty();
+            $("<option>").text("Select...").appendTo("#pay-user");
+            users.forEach(function(employee){
+                $("<option>").val(employee["id"]).text(employee["name"]).appendTo("#pay-user")
+            });
+            $(".user-select").removeClass("hide");
+        }else{
+            $(".user-select").addClass("hide");
+        }
     });
 }//End of btnEvents();
 
