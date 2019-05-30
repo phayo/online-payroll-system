@@ -12,8 +12,23 @@ function queryServer(method, data, url, callfunction){
         url: url,
         type: method,
         data: data,
-        success: function(data){
-            linkFunction(callfunction, data);
+        success: function(response){
+            linkFunction(callfunction, response);
+        },
+        error: function (xhr, status) {
+            switch (status) {
+                case 404:
+                    alert('File not found');
+                    break;
+                case 500:
+                    alert('Server error');
+                    break;
+                case 0:
+                    alert('Request aborted');
+                    break;
+                default:
+                    alert('Unknown error: ' + xhr.statusText);
+            }
         }
     });
 }

@@ -50,6 +50,50 @@ function btnEvents(){
         }
         e.preventDefault();
     });
+
+    $("#new-emp-rank").blur(function(){
+        var value = $(this).val();
+        if(value >= 4){
+            $(".payroll-manager-info").removeClass("hide");
+            $("#new-emp-access").val(true);
+        }else{
+            $(".payroll-manager-info").addClass("hide");
+            $("#new-emp-access").val(false);
+        }
+    });
+
+    $("form[name=addUser]").submit(function(e){
+        var check = $("#check").val();
+        var fullname = $("#newEmployeeName").val();
+        var email = $("#new-emp-email").val();
+        var password = $("#new-emp-password").val();
+        var dept = $("#new-emp-dept").val();
+        var rank = parseInt($("#new-emp-rank").val());
+        var job = $("#new-emp-jobTitle").val();
+        var access = $("#new-emp-access").val();
+        var payHistory = "2019:";
+        access == "true"? access = true : access = false;
+        // var param = new Object();
+        // param["name"] = fullname;
+        // param["email"] = email;
+        var data = {
+            "name": fullname,
+            "email": email,
+            "password": password,
+            "payroll-access": access,
+            "payment-history": payHistory,
+            "department": dept,
+            "rank": rank,
+            "job-description": job
+          };
+        if(check === "add"){
+            queryServer("POST", data, server, "LoadNewEmployee");
+        }else if(check === "edit"){
+
+        }
+        e.preventDefault();
+    });
+
 }
 function stashInfo(data){
     var employeesData = JSON.stringify(data);
@@ -79,6 +123,7 @@ function displayEmployees(data){
             newEmployee.find(".employee-salary").text(PriceFormat(salary));
             var month = getMonth();
             var payHistory = employee["payment-history"];
+            payHistory = payHistory.split(":");
             newEmployee.find(".employee-pay-status").text(payHistory.includes(month));
             newEmployee.find(".employee-email").text(employee["email"]);
             var deleteButton = newEmployee.find(".delete-employee");
@@ -111,6 +156,21 @@ function  displayUpdatedInfo(data){
     });
 }
 
+function  displayNewUser(data){
+    swal({
+        title: 'Done!',
+        text: "New User Added!",
+        type: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'Ok!',
+        confirmButtonClass: 'btn btn-success',
+        buttonsStyling: false,
+        onClose: function () {
+            window.location.reload();
+        }
+    });
+}
+
 function linkFunction(callFunction, data){
     switch(callFunction){
         case "storeInfo":{
@@ -123,6 +183,10 @@ function linkFunction(callFunction, data){
         }
         case "updateInfo":{
             displayUpdatedInfo(data);
+            break;
+        }
+        case "LoadNewEmployee":{
+            displayNewUser(data);
             break;
         }
     }
