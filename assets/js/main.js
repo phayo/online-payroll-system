@@ -101,8 +101,21 @@ function btnEvents(){
         }
         e.preventDefault();
     });
+    $(".new-emp-email").blur(function(){
+        var mail = $(this).val();
+        var employeeData = $(".empData").val();
+        employeeData = JSON.parse(employeeData);
+        employeeData.forEach(function(employee){
+            if(mail === employee["email"]){
+                $(".email-err").removeClass("hide");
+                break;
+            }else{
+                $(".email-err").addClass("hide");
+            }
+        });
+    });
+}//End of btnEvents();
 
-}
 function stashInfo(data){
     var employeesData = JSON.stringify(data);
     $(".empData").val(employeesData);
@@ -220,6 +233,7 @@ function linkFunction(callFunction, data){
         }
         case "loadEmployees":{
             displayEmployees(data);
+            stashInfo(data);
             break;
         }
         case "updateInfo":{
