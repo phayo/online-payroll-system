@@ -5,44 +5,78 @@
       "email": "anazodogd@gmail.com",
       "password": "12345",
       "payroll-access": "true",
-      "payment-history": "2019:4:4:",
+      "payment-history": "2019:4:",
       "department": "Software",
       "rank": "5",
       "job-description": "Project Manager",
-      "id": 1
+      "id": 1,
+      "balance": 1500000
     },
     {
       "name": "Lukman Haruna",
       "email": "haruna@gmail.com",
       "password": "54321",
       "payroll-access": "false",
-      "payment-history": "2019:4:4:",
+      "payment-history": "2019:4:",
       "department": "Marketting",
       "rank": "2",
       "job-description": "Marketting Supervisor",
-      "id": 2
+      "id": 2,
+      "balance": 500000
     },
     {
       "name": "John James",
       "email": "johndoe@gmail.com",
       "password": "john",
       "payroll-access": "true",
-      "payment-history": "2019:4:4:",
+      "payment-history": "2019:4:",
       "department": "Administration",
       "rank": "4",
       "job-description": "Program Manager",
-      "id": 3
+      "id": 3,
+      "balance": 600000
     },
     {
       "name": "Jane Sander",
       "email": "janesanders@dpm.com",
       "password": "jane",
       "payroll-access": "false",
-      "payment-history": "2019:4:4:",
+      "payment-history": "2019:4:",
       "department": "Marketting",
       "rank": "2",
       "job-description": "Marketter",
-      "id": 4
+      "id": 4,
+      "balance": 1000000
+    },
+    {
+      "name": "Francisca Ezeh",
+      "email": "francaezeh@gmail.com",
+      "password": "12345",
+      "payroll-access": "false",
+      "payment-history": "2019:4:",
+      "department": "Software",
+      "rank": "3",
+      "job-description": "Junior Developer",
+      "id": 6,
+      "balance": 600000
+    },
+    {
+      "name": "Olatunde Sadiq",
+      "email": "olasadiq@yahoo.com",
+      "password": "12345",
+      "payroll-access": "false",
+      "payment-history": "2019:4:",
+      "department": "Software",
+      "rank": "3",
+      "job-description": "Junior Developer",
+      "balance": "300000",
+      "id": 7
+    }
+  ],
+  "employer": [
+    {
+      "company-balance": "199999400000",
+      "id": 1
     }
   ]
 }
