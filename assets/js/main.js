@@ -1,4 +1,5 @@
 var server = "http://localhost:3000/employees/";
+var company = "http://localhost:3000/employer/"
 function performPageActions(){
     var page = getCurrentPage();
     if(page === "index.html"){
@@ -22,8 +23,7 @@ function getEmployeesData(){
 
 function employeespageFunctions(){
     queryServer("GET", "", server, "loadEmployees");
-    var bal = parseInt($("#company-balance").val());
-    $(".comBal").text(PriceFormat(bal));
+    queryServer("GET", "", company, "Rebalance");
 };
 function btnEvents(){
     $("form[name=login]").submit(function(e){
@@ -85,7 +85,8 @@ function btnEvents(){
                 "payment-history": payHistory,
                 "department": dept,
                 "rank": rank,
-                "job-description": job
+                "job-description": job,
+                "balance": 0
               };
             queryServer("POST", data, server, "LoadNewEmployee");
         }else{
@@ -160,16 +161,43 @@ function btnEvents(){
     $("form[name=pay-salary]").submit(function(e){
         var category = $("#pay-category").val();
         var employees = $(".empData").val();
+        var companyBalance = parseInt($("#company-balance").val());
         var month = getMonth();
         employees = JSON.parse(employees);
         if(category == "0"){
             employees.forEach(function(employee){
-                var id = employee["id"];
-                var status = employee["payment-history"];
-                status += month+":";
-                employee["payment-history"] = status;
-                delete employee["id"];
-                queryServer("PUT", employee, server+id, "default");
+                var history = employee["payment-history"];
+                history = history.split(":");
+                var check = history.includes(""+month);
+                if(!check){
+                    var id = employee["id"];
+                    var salary = parseInt(employee["rank"]);
+                    salary *= 100000;
+                    companyBalance -= salary;
+                    $(".comBal").text(PriceFormat(companyBalance));
+                    var status = employee["payment-history"];
+                    status += month+":";
+                    employee["payment-history"] = status;
+                    employee["balance"] = parseInt(employee["balance"]) + salary;
+                    delete employee["id"];
+                    var newBal = {"company-balance": companyBalance};
+                    queryServer("PUT", employee, server+id, "default");
+                    queryServer("PUT", newBal, company+"1", "default");
+                }else{
+                    swal({
+                        title: "Oops!",
+                        text: employees["name"]+" has already been paid this month.",
+                        type: "success",
+                        input: "text",
+                        showCancelButton: false,
+                        confirmButtonClass: 'btn btn-success',
+                        confirmButtonText: 'Ok!'
+                    },function (isConfirm) {
+                        if (isConfirm) {
+                            
+                        }
+                    });
+                }
             });
             swal({
                 title: 'Done!',
@@ -188,11 +216,37 @@ function btnEvents(){
             employees.forEach(function(employee){
                 var id = employee["id"];
                 if(user == id){
-                    var status = employee["payment-history"];
-                    status += month+":";
-                    employee["payment-history"] = status;
-                    delete employee["id"];
-                    queryServer("PUT", employee, server+id, "LoadPayUser");  
+                    var history = employee["payment-history"];
+                    history = history.split(":");
+                    var check = history.includes(""+month);
+                    if(!check){
+                        var id = employee["id"];
+                        var salary = parseInt(employee["rank"]);
+                        salary *= 100000;
+                        companyBalance -= salary;
+                        $(".comBal").text(PriceFormat(companyBalance));
+                        var status = employee["payment-history"];
+                        status += month+":";
+                        employee["payment-history"] = status;
+                        employee["balance"] = parseInt(employee["balance"]) + salary;
+                        delete employee["id"];
+                        var newBal = {"company-balance": companyBalance};
+                        queryServer("PUT", employee, server+id, "LoadPayUser");
+                        queryServer("PUT", newBal, company+"1", "default");
+                    }else{
+                        swal({
+                            title: 'Oops!',
+                            text: "Employee paid already for this month.",
+                            type: 'info',
+                            showCancelButton: false,
+                            confirmButtonText: 'Ok!',
+                            confirmButtonClass: 'btn btn-success',
+                            buttonsStyling: false,
+                            onClose: function () {
+                                window.location.reload();
+                            }
+                        });
+                    }
                 }
             });
         }
@@ -233,6 +287,7 @@ function autoPayment(){
 }
 
 function stashInfo(data){
+    var compBal = data[0]["balance"];
     var employeesData = JSON.stringify(data);
     $(".empData").val(employeesData);
 }
@@ -265,6 +320,9 @@ function displayEmployees(data){
             payHistory = payHistory.split(":");
             newEmployee.find(".employee-pay-status").text(payHistory.includes(month));
             newEmployee.find(".employee-email").text(employee["email"]);
+            var bal = employee["balance"];
+            bal = PriceFormat(bal);
+            newEmployee.find(".employee-balance").text(bal);
             var deleteButton = newEmployee.find(".delete-employee");
             var editButton = newEmployee.find(".edit-employee-info");
             deleteButton.click(function(){
@@ -329,6 +387,13 @@ function editEmployeeData(data){
     }).modal("show");
 }
 
+function updateCompanyBalance(data){
+    var compBal = data[0]["company-balance"];
+    var bal = PriceFormat(compBal);
+    $("#company-balance").val(compBal);
+    $(".comBal").text(bal);
+}
+
 function displayEditData(){
     swal({
         title: 'Done!',
@@ -382,10 +447,13 @@ function linkFunction(callFunction, data){
         case "LoadEditEmployeeData":{
             displayEditData(data);
             break;
-            LoadPayUser
         }
         case "LoadPayUser":{
             displayPayUser(data);
+            break;
+        }
+        case "Rebalance":{
+            updateCompanyBalance(data);
             break;
         }
         default:{
