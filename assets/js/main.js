@@ -192,16 +192,12 @@ function btnEvents(){
                         showCancelButton: false,
                         confirmButtonClass: 'btn btn-success',
                         confirmButtonText: 'Ok!'
-                    },function (isConfirm) {
-                        if (isConfirm) {
-                            
-                        }
                     });
                 }
             });
             swal({
                 title: 'Done!',
-                text: "Employees Paid",
+                text: "Everything has been handled",
                 type: 'success',
                 showCancelButton: false,
                 confirmButtonText: 'Ok!',
